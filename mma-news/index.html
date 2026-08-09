@@ -1,75 +1,248 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fightonomics - MMA News & Analysis</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MMA News</title>
     <style>
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-        background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
-        color: #fff;
-        line-height: 1.6;
-        overflow-x: hidden;
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
       }
-      .container { max-width: 1200px; margin: 0 auto; padding: 2rem 1.5rem; }
-      header { text-align: center; margin-bottom: 3rem; padding-bottom: 2rem; border-bottom: 2px solid #ff6b35; animation: slideDown 0.6s ease; }
-      header h1 { font-size: clamp(2rem, 8vw, 3.5rem); font-weight: 900; letter-spacing: 3px; color: #ff6b35; text-transform: uppercase; margin-bottom: 0.5rem; }
-      .tagline { font-size: clamp(0.95rem, 2vw, 1.2rem); color: #aaa; letter-spacing: 2px; text-transform: uppercase; }
-      .bio-section { background: rgba(255, 107, 53, 0.05); border: 1px solid #ff6b35; border-radius: 12px; padding: 2rem; margin-bottom: 3rem; backdrop-filter: blur(10px); }
-      .bio-title { color: #ff6b35; font-size: clamp(1.1rem, 2.5vw, 1.4rem); margin-bottom: 1rem; font-weight: 700; }
-      .bio-text { color: #ccc; font-size: clamp(0.95rem, 2vw, 1.05rem); line-height: 1.8; }
-      .bio-text p { margin-bottom: 0.75rem; }
-      .bio-text strong { color: #ff6b35; }
-      .pillar-nav { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 1rem; margin-bottom: 3rem; }
-      .pillar-link { background: linear-gradient(135deg, #ff6b35 0%, #ff8555 100%); color: #000; text-decoration: none; padding: 1rem 1.5rem; border-radius: 8px; font-weight: 700; text-align: center; transition: transform 0.3s ease, box-shadow 0.3s ease; box-shadow: 0 4px 15px rgba(255, 107, 53, 0.2); }
-      .pillar-link:hover { transform: translateY(-4px); box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4); }
-      
-      .featured-article { background: linear-gradient(135deg, rgba(255, 107, 53, 0.15) 0%, rgba(255, 133, 85, 0.08) 100%); border: 2px solid #ff6b35; border-radius: 16px; padding: 2.5rem; margin-bottom: 3rem; box-shadow: 0 8px 32px rgba(255, 107, 53, 0.2); }
-      .featured-article-header { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; margin-bottom: 2rem; }
-      .featured-article-image { width: 100%; height: 320px; border-radius: 12px; overflow: hidden; box-shadow: 0 8px 32px rgba(255, 107, 53, 0.3); }
-      .featured-article-image img { width: 100%; height: 100%; object-fit: cover; }
-      .featured-article-title { color: #ff6b35; font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 900; margin-bottom: 1rem; line-height: 1.3; }
-      .featured-article-meta { display: flex; gap: 1.5rem; margin-bottom: 1rem; flex-wrap: wrap; }
-      .featured-article-meta span { color: #ff8555; font-size: 0.85em; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; }
-      .featured-article-excerpt { color: #ddd; font-size: 1.05rem; line-height: 1.8; margin-bottom: 1.5rem; }
-      
-      .breakdown-section { background: rgba(0, 0, 0, 0.3); border-left: 4px solid #ff6b35; padding: 1.5rem; margin-top: 2rem; border-radius: 8px; }
-      .breakdown-title { color: #ff6b35; font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 2px; }
-      .breakdown-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
-      .breakdown-item { background: rgba(255, 107, 53, 0.1); border: 1px solid #ff6b35; border-radius: 8px; padding: 1rem; }
-      .breakdown-item-title { color: #ff8555; font-weight: 700; font-size: 0.9em; margin-bottom: 0.5rem; text-transform: uppercase; }
-      .breakdown-item-content { color: #ddd; font-size: 0.95rem; line-height: 1.6; }
-      .breakdown-item-content strong { color: #ff6b35; }
-      
-      .featured-link { display: inline-block; background: linear-gradient(135deg, #ff6b35 0%, #ff8555 100%); color: #000; padding: 0.85rem 1.8rem; border-radius: 6px; text-decoration: none; font-weight: 700; transition: transform 0.3s ease; margin-top: 1rem; }
-      .featured-link:hover { transform: translateY(-2px); }
-      
-      .news-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; margin-top: 2rem; }
-      .news-card { background: linear-gradient(135deg, #1a1a1a 0%, #242424 100%); border: 1px solid #333; border-radius: 12px; overflow: hidden; transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column; }
-      .news-card:hover { transform: translateY(-8px); box-shadow: 0 12px 40px rgba(255, 107, 53, 0.15); }
-      .news-image { width: 100%; height: 200px; background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%); display: flex; align-items: center; justify-content: center; color: #ff6b35; font-size: 2em; overflow: hidden; }
-      .news-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease; }
-      .news-card:hover .news-image img { transform: scale(1.05); }
-      .news-content { padding: 1.5rem; display: flex; flex-direction: column; flex-grow: 1; }
-      .news-source { font-size: 0.75em; color: #ff6b35; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 0.75rem; font-weight: 700; }
-      .news-title { font-size: clamp(1.1rem, 2vw, 1.4rem); font-weight: 700; color: #fff; margin-bottom: 1rem; line-height: 1.4; }
-      .news-description { font-size: 0.95em; color: #bbb; line-height: 1.6; margin-bottom: 1.25rem; flex-grow: 1; }
-      .news-footer { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid #333; padding-top: 1rem; flex-wrap: wrap; gap: 0.5rem; }
-      .news-date { font-size: 0.85em; color: #999; }
-      .read-more { color: #ff6b35; text-decoration: none; font-weight: 600; transition: color 0.3s ease; }
-      .read-more:hover { color: #ff8555; }
-      @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-      @media (max-width: 1024px) { .pillar-nav { gap: 0.75rem; } }
-      @media (max-width: 768px) { 
-        .container { padding: 1rem 0.75rem; } 
-        .pillar-nav { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.75rem; } 
-        .featured-article-header { grid-template-columns: 1fr; gap: 1rem; }
-        .featured-article-image { height: 280px; }
-        .breakdown-grid { grid-template-columns: 1fr; }
-        .news-grid { grid-template-columns: 1fr; gap: 1.5rem; } 
-        .news-footer { flex-direction: column; align-items: flex-start; } 
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        background: linear-gradient(180deg, #0a0a0a 0%, #1a1a1a 100%);
+        color: #e0e0e0;
+        line-height: 1.6;
+        min-height: 100vh;
+      }
+
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 2rem 1rem;
+      }
+
+      header {
+        text-align: center;
+        margin-bottom: 3rem;
+        padding-bottom: 2rem;
+        border-bottom: 3px solid #ff6b35;
+        animation: slideDown 0.6s ease;
+      }
+
+      @keyframes slideDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      header h1 {
+        font-size: clamp(2rem, 8vw, 3.5rem);
+        margin-bottom: 0.5rem;
+        color: #ff6b35;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        font-weight: 900;
+      }
+
+      .tagline {
+        font-size: clamp(1rem, 3vw, 1.25rem);
+        color: #aaa;
+        margin-bottom: 1.5rem;
+        font-weight: 300;
+        letter-spacing: 1px;
+      }
+
+      .bio-section {
+        background: linear-gradient(135deg, rgba(26, 26, 26, 0.8) 0%, rgba(42, 42, 42, 0.8) 100%);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 107, 53, 0.2);
+        border-radius: 12px;
+        padding: clamp(1.5rem, 4vw, 2.5rem);
+        margin: 0 auto 2.5rem;
+        max-width: 900px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      }
+
+      .bio-title {
+        color: #ff6b35;
+        font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+        margin-bottom: 1rem;
+        font-weight: 700;
+      }
+
+      .bio-text {
+        color: #ccc;
+        font-size: clamp(0.95rem, 2vw, 1.05rem);
+        line-height: 1.8;
+      }
+
+      .pillar-nav {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 1rem;
+        margin-bottom: 3rem;
+        max-width: 1100px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .pillar-link {
+        background: linear-gradient(135deg, #ff6b35 0%, #ff8555 100%);
+        color: #000;
+        padding: clamp(1rem, 2vw, 1.2rem) 1.5rem;
+        border-radius: 8px;
+        text-decoration: none;
+        text-align: center;
+        font-weight: 700;
+        font-size: clamp(0.9rem, 1.5vw, 1rem);
+        transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        border: 2px solid transparent;
+        box-shadow: 0 4px 15px rgba(255, 107, 53, 0.2);
+        cursor: pointer;
+        display: inline-block;
+        margin: 0 auto;
+      }
+
+      .pillar-link:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 30px rgba(255, 107, 53, 0.4);
+        background: linear-gradient(135deg, #ff8555 0%, #ff6b35 100%);
+      }
+
+      .news-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+      }
+
+      .news-card {
+        background: linear-gradient(135deg, #1a1a1a 0%, #262626 100%);
+        border: 1px solid #333;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        display: flex;
+        flex-direction: column;
+      }
+
+      .news-card:hover {
+        border-color: #ff6b35;
+        transform: translateY(-4px);
+        box-shadow: 0 12px 30px rgba(255, 107, 53, 0.25);
+      }
+
+      .news-image {
+        width: 100%;
+        height: 220px;
+        background: #2a2a2a;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ff6b35;
+        font-size: 2em;
+        overflow: hidden;
+      }
+
+      .news-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      .news-card:hover .news-image img {
+        transform: scale(1.05);
+      }
+
+      .news-content {
+        padding: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+      }
+
+      .news-source {
+        font-size: 0.75em;
+        color: #ff6b35;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 0.75rem;
+        font-weight: 700;
+      }
+
+      .news-title {
+        font-size: clamp(1.1rem, 2vw, 1.4rem);
+        font-weight: 700;
+        color: #fff;
+        margin-bottom: 1rem;
+        line-height: 1.4;
+      }
+
+      .news-description {
+        font-size: 0.95em;
+        color: #bbb;
+        line-height: 1.6;
+        margin-bottom: 1.25rem;
+        flex-grow: 1;
+      }
+
+      .news-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid #333;
+        padding-top: 1rem;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      .news-date {
+        font-size: 0.85em;
+        color: #888;
+      }
+
+      .read-more {
+        color: #ff6b35;
+        text-decoration: none;
+        font-weight: 700;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .read-more:hover {
+        color: #ff8555;
+        gap: 0.75rem;
+      }
+
+      .empty-state {
+        text-align: center;
+        padding: 4rem 2rem;
+        color: #888;
+      }
+
+      .empty-state h2 {
+        color: #ff6b35;
+        margin-bottom: 1rem;
+        font-size: clamp(1.2rem, 3vw, 1.6rem);
+      }
+
+      @media (max-width: 1024px) {
+        .pillar-nav { gap: 0.75rem; }
+      }
+
+      @media (max-width: 768px) {
+        .container { padding: 1rem; }
+        header h1 { letter-spacing: 2px; }
+        .pillar-nav { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 0.75rem; }
+        .news-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+        .news-footer { flex-direction: column; align-items: flex-start; }
       }
     </style>
   </head>
@@ -95,59 +268,19 @@
         <a href="/fightonomics/upcoming-events/" class="pillar-link">Upcoming Events</a>
       </div>
 
-      <div class="featured-article">
-        <div class="featured-article-header">
-          <div>
-            <h2 class="featured-article-title">PFL Charlotte: Battle Takes Down Rosta in High-Stakes Clash</h2>
-            <div class="featured-article-meta">
-              <span>🥊 By Julian Stoneman</span>
-              <span>August 8, 2026</span>
-            </div>
-            <p class="featured-article-excerpt">Last night, the Professional Fighters League touched down in Charlotte, NC, and delivered one of the most competitive main cards of the season. Bryan Battle's split decision victory over Dalton Rosta was the cherry on top—but what really stood out was the <strong>depth and intensity across the entire lineup</strong>. As someone who's spent years studying the sport, here's what the numbers tell us about why PFL Charlotte was a career-defining night for the promotion.</p>
-          </div>
-          <div class="featured-article-image">
-            <img src="/fightonomics/agents/mma-news-updater/images/pfl-charlotte-results-battle-splits-rosta-jake-paul-next-1786269641012.jpeg" alt="Bryan Battle defeats Dalton Rosta at PFL Charlotte" onerror="this.parentElement.innerHTML='<div style='width:100%;height:100%;background:linear-gradient(135deg,#1a1a1a 0%,#242424 100%);display:flex;align-items:center;justify-content:center;font-size:3em;color:#ff6b35'>🥊</div>'" />
-          </div>
-        </div>
-
-        <div class="breakdown-section">
-          <div class="breakdown-title">⚡ Main Card Analytics Breakdown</div>
-          <div class="breakdown-grid">
-            <div class="breakdown-item">
-              <div class="breakdown-item-title">Striking Volume</div>
-              <div class="breakdown-item-content"><strong>Fight-by-fight precision matters</strong>—across the main card, we saw aggressive strikers meet their match with strong distance management. Goltsov's TKO set the tone early; Bowers' submission showcased the evolution of women's grappling.</div>
-            </div>
-            <div class="breakdown-item">
-              <div class="breakdown-item-title">Grappling Exchange</div>
-              <div class="breakdown-item-content"><strong>Wrestling chains dominated</strong>—competitive fighters controlled the fight dictation. Battle's wrestling against Rosta proved decisive, while Bowers' rear-naked choke was the technical highlight of the card.</div>
-            </div>
-            <div class="breakdown-item">
-              <div class="breakdown-item-title">Cardio & Pacing</div>
-              <div class="breakdown-item-content"><strong>Championship-level conditioning</strong>—all main card fighters came to stay. Three-round wars, championship rounds that demanded peak fitness, and sustained pressure proved who was truly prepared.</div>
-            </div>
-            <div class="breakdown-item">
-              <div class="breakdown-item-title">Decision Impact</div>
-              <div class="breakdown-item-content"><strong>Close scorecards reflected quality</strong>—Battle's split decision was controversial but fair, setting up major matchups ahead. These tight fights elevate the division and demand respect from the next tier.</div>
-            </div>
-          </div>
-
-          <p style="color: #ccc; margin-top: 1.5rem; font-size: 0.95em; line-height: 1.7;">
-            The PFL has positioned itself as the promotion where <strong>every fight matters</strong>. From Goltsov's violent finish to Bowers' tactical submission, Charlotte showcased why mixed martial arts isn't just about individual highlights—it's about building depth, raising standards, and creating a pipeline of world-class talent. This is the future of MMA, and I'm here to document every step.
-          </p>
-        </div>
-
-        <a href="https://www.mmamania.com/professional-fighters-league-pfl/463095/pfl-charlotte-results-recap-and-highlights-battle-splits-rosta-offers-to-welcome-jake-paul-to-mma" target="_blank" class="featured-link">Read Full Event Recap →</a>
+      <div style="text-align: center; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid #333;">
+        <h2 style="font-size: clamp(1.3rem, 3vw, 1.7rem); color: #ff6b35; margin-bottom: 0.5rem;">Latest News</h2>
+        <p style="color: #aaa;">Breaking MMA news and event coverage</p>
       </div>
 
-      <div style="text-align: center; margin-bottom: 2rem; padding-bottom: 2rem; border-top: 1px solid #333; border-bottom: 1px solid #333; margin-top: 3rem;">
-        <h2 style="font-size: clamp(1.3rem, 3vw, 1.7rem); color: #ff6b35; margin-bottom: 0.5rem;">Breaking News</h2>
-        <p style="color: #aaa;">Latest coverage from the fight world</p>
-      </div>
-
-      <div class="news-grid">
+      
+        <div class="news-grid">
+          
             <div class="news-card">
               <div class="news-image">
-                <img src="/fightonomics/agents/mma-news-updater/images/ufc-vegas-120-results-gamrot-vs-salkilld-1786269641009.jpeg" alt="UFC Vegas 120 Results: Gamrot vs. Salkilld" onerror="this.style.display='none'; this.parentElement.innerHTML='🥊'" />
+                
+                  <img src="/fightonomics/agents/mma-news-updater/images/ufc-vegas-120-results-gamrot-vs-salkilld-1786272074079.jpeg" alt="UFC Vegas 120 Results: Gamrot vs. Salkilld" />
+                
               </div>
               <div class="news-content">
                 <div class="news-source">MMA Fighting</div>
@@ -159,10 +292,12 @@
                 </div>
               </div>
             </div>
-
+          
             <div class="news-card">
               <div class="news-image">
-                <img src="/fightonomics/agents/mma-news-updater/images/frustrated-trump-turns-on-another-ally-as-weak-homeland-security-boss-markwayne-mullin-is-in-angry-president-s-crosshairs-over-four-key-mistakes-1786269641010.jpeg" alt="Frustrated Trump turns on ANOTHER ally as 'weak' Homeland Security boss Markwayne Mullin is in angry president's crosshairs over four key 'mistakes'" onerror="this.style.display='none'; this.parentElement.innerHTML='🥊'" />
+                
+                  <img src="/fightonomics/agents/mma-news-updater/images/frustrated-trump-turns-on-another-ally-as-weak-homeland-security-boss-markwayne-mullin-is-in-angry-president-s-crosshairs-over-four-key-mistakes-1786272074080.jpeg" alt="Frustrated Trump turns on ANOTHER ally as 'weak' Homeland Security boss Markwayne Mullin is in angry president's crosshairs over four key 'mistakes'" />
+                
               </div>
               <div class="news-content">
                 <div class="news-source">Dailymail.com</div>
@@ -174,10 +309,12 @@
                 </div>
               </div>
             </div>
-
+          
             <div class="news-card">
               <div class="news-image">
-                <img src="/fightonomics/agents/mma-news-updater/images/pfl-charlotte-recap-show-bryan-battle-wins-lewis-mcgrillen-evans-steals-the-show-1786269641011.jpeg" alt="PFL Charlotte recap show: Bryan Battle wins, Lewis McGrillen-Evans steals the show" onerror="this.style.display='none'; this.parentElement.innerHTML='🥊'" />
+                
+                  <img src="/fightonomics/agents/mma-news-updater/images/pfl-charlotte-recap-show-bryan-battle-wins-lewis-mcgrillen-evans-steals-the-show-1786272074081.jpeg" alt="PFL Charlotte recap show: Bryan Battle wins, Lewis McGrillen-Evans steals the show" />
+                
               </div>
               <div class="news-content">
                 <div class="news-source">Sherdog.com</div>
@@ -189,40 +326,46 @@
                 </div>
               </div>
             </div>
-
+          
             <div class="news-card">
               <div class="news-image">
-                <img src="/fightonomics/agents/mma-news-updater/images/pfl-charlotte-results-battle-splits-rosta-jake-paul-next-1786269641012.jpeg" alt="PFL Charlotte Results: Battle Splits Rosta, Jake Paul Next?" onerror="this.style.display='none'; this.parentElement.innerHTML='🥊'" />
+                
+                  <img src="/fightonomics/agents/mma-news-updater/images/pfl-charlotte-results-battle-splits-rosta-jake-paul-next-1786272074082.jpeg" alt="PFL Charlotte Results: Battle Splits Rosta, Jake Paul Next?" />
+                
               </div>
               <div class="news-content">
                 <div class="news-source">MMA Mania</div>
                 <h2 class="news-title">PFL Charlotte Results: Battle Splits Rosta, Jake Paul Next?</h2>
-                <p class="news-description">PFL Charlotte went down last night (Fri., Aug. 7, 2026) inside Bojangles Coliseum in Charlotte, North Carolina. In the main event of the evening, Bryan Battle defeated Dalton Rosta via split decision after a back-and-forth brawl. The win gave Battle his firstâ€¦</p>
+                <p class="news-description">PFL Charlotte went down last night (Fri., Aug. 7, 2026) inside Bojangles Coliseum in Charlotte, North Carolina. In the main event of the evening, Bryan Battle defeated Dalton Rosta via split decision after a back-and-forth brawl. The win gave Battle his first…</p>
                 <div class="news-footer">
                   <span class="news-date">8/8/2026</span>
                   <a href="https://www.mmamania.com/professional-fighters-league-pfl/463095/pfl-charlotte-results-recap-and-highlights-battle-splits-rosta-offers-to-welcome-jake-paul-to-mma" target="_blank" rel="noopener noreferrer" class="read-more">Read →</a>
                 </div>
               </div>
             </div>
-
+          
             <div class="news-card">
               <div class="news-image">
-                <img src="/fightonomics/agents/mma-news-updater/images/conor-mcgregor-donald-trump-and-the-political-arena-of-mma-1786269641013.jpeg" alt="Conor McGregor, Donald Trump and the political arena of MMA" onerror="this.style.display='none'; this.parentElement.innerHTML='🥊'" />
+                
+                  <img src="/fightonomics/agents/mma-news-updater/images/conor-mcgregor-donald-trump-and-the-political-arena-of-mma-1786272074083.jpeg" alt="Conor McGregor, Donald Trump and the political arena of MMA" />
+                
               </div>
               <div class="news-content">
                 <div class="news-source">The Irish Times</div>
                 <h2 class="news-title">Conor McGregor, Donald Trump and the political arena of MMA</h2>
-                <p class="news-description">For MMA, Magaâ€™s sports arm, not even a court finding of liability for rape prevented McGregor from topping the bill. Might his â€˜dudâ€™ comeback change attitudes?</p>
+                <p class="news-description">For MMA, Maga’s sports arm, not even a court finding of liability for rape prevented McGregor from topping the bill. Might his ‘dud’ comeback change attitudes?</p>
                 <div class="news-footer">
                   <span class="news-date">8/8/2026</span>
                   <a href="https://www.irishtimes.com/life-style/people/2026/08/08/conor-mcgregor-donald-trump-and-the-political-arena-of-mma/" target="_blank" rel="noopener noreferrer" class="read-more">Read →</a>
                 </div>
               </div>
             </div>
-
+          
             <div class="news-card">
               <div class="news-image">
-                <img src="/fightonomics/agents/mma-news-updater/images/pfl-charlotte-results-brian-battle-edges-dalton-rosta-in-hometown-win-1786269641014.jpeg" alt="PFL Charlotte results: Brian Battle edges Dalton Rosta in hometown win" onerror="this.style.display='none'; this.parentElement.innerHTML='🥊'" />
+                
+                  <img src="/fightonomics/agents/mma-news-updater/images/pfl-charlotte-results-brian-battle-edges-dalton-rosta-in-hometown-win-1786272074084.jpeg" alt="PFL Charlotte results: Brian Battle edges Dalton Rosta in hometown win" />
+                
               </div>
               <div class="news-content">
                 <div class="news-source">USA Today</div>
@@ -234,218 +377,77 @@
                 </div>
               </div>
             </div>
-
+          
             <div class="news-card">
               <div class="news-image">
-                <img src="/fightonomics/agents/mma-news-updater/images/midnight-mania-gordon-beats-up-hapless-troll-in-viral-video-1786269641015.jpeg" alt="Midnight Mania! Gordon Beats Up Hapless Troll In Viral Video" onerror="this.style.display='none'; this.parentElement.innerHTML='🥊'" />
+                
+                  <img src="/fightonomics/agents/mma-news-updater/images/midnight-mania-gordon-beats-up-hapless-troll-in-viral-video-1786272074085.jpeg" alt="Midnight Mania! Gordon Beats Up Hapless Troll In Viral Video" />
+                
               </div>
               <div class="news-content">
                 <div class="news-source">MMA Mania</div>
                 <h2 class="news-title">Midnight Mania! Gordon Beats Up Hapless Troll In Viral Video</h2>
                 <p class="news-description">Bringing you the weird and wild from the world of MMA each and every weeknight!</p>
                 <div class="news-footer">
-                  <span class="news-date">8/7/2026</span>
+                  <span class="news-date">8/8/2026</span>
                   <a href="https://www.mmamania.com/ufc-videos/463020/video-jared-gordon-pummels-goofy-internet-troll-not-trying-to-catch-a-lawsuit" target="_blank" rel="noopener noreferrer" class="read-more">Read →</a>
                 </div>
               </div>
             </div>
-
+          
             <div class="news-card">
               <div class="news-image">
-                🥊
+                
+                  🥊
+                
               </div>
               <div class="news-content">
                 <div class="news-source">Slashdot.org</div>
                 <h2 class="news-title">PFL Charlotte: Battle vs. Rosta live results, highlights - MMA Junkie</h2>
-                <p class="news-description">PFL Charlotte: Battle vs. Rosta live results, highlightsMMA Junkie PFL Charlotte: Battle vs. Rosta Live Updates, Results and HighlightsBleacher Report PFL Charlotte results: Battle vs. RostaMMA Fighting PFL Charlotte weigh-ins: Bryan Battle, Dalton Rosta set â€¦</p>
+                <p class="news-description">PFL Charlotte: Battle vs. Rosta live results, highlightsMMA Junkie PFL Charlotte: Battle vs. Rosta Live Updates, Results and HighlightsBleacher Report PFL Charlotte results: Battle vs. RostaMMA Fighting PFL Charlotte weigh-ins: Bryan Battle, Dalton Rosta set …</p>
                 <div class="news-footer">
-                  <span class="news-date">8/7/2026</span>
+                  <span class="news-date">8/8/2026</span>
                   <a href="https://slashdot.org/firehose.pl?op=view&amp;id=184895890" target="_blank" rel="noopener noreferrer" class="read-more">Read →</a>
                 </div>
               </div>
             </div>
-
+          
             <div class="news-card">
               <div class="news-image">
-                🥊
+                
+                  🥊
+                
               </div>
               <div class="news-content">
                 <div class="news-source">Albuquerque Journal</div>
                 <h2 class="news-title">Tender, loving care? Not in the ring</h2>
-                <p class="news-description">Saturday Boxing: Leanna Martinez vs. Amanda Lovato, Jorge Villarruel vs. Shaquan Wager, four other boutx Time: 6 p.m. (doors open at 5) Location: Embassy Suites Streaming: YouTube Leanna Martinez is a registered nurse. Amanda Lovato is planning to enter the nâ€¦</p>
+                <p class="news-description">Saturday Boxing: Leanna Martinez vs. Amanda Lovato, Jorge Villarruel vs. Shaquan Wager, four other boutx Time: 6 p.m. (doors open at 5) Location: Embassy Suites Streaming: YouTube Leanna Martinez is a registered nurse. Amanda Lovato is planning to enter the n…</p>
                 <div class="news-footer">
-                  <span class="news-date">8/7/2026</span>
+                  <span class="news-date">8/8/2026</span>
                   <a href="https://www.abqjournal.com/sports/tender-loving-care-not-in-the-ring/3098843" target="_blank" rel="noopener noreferrer" class="read-more">Read →</a>
                 </div>
               </div>
             </div>
-
+          
             <div class="news-card">
               <div class="news-image">
-                <img src="/fightonomics/agents/mma-news-updater/images/ex-ufc-champion-tyron-woodley-reveals-dream-opponent-in-raf-1786269641019.jpeg" alt="Ex-UFC Champion Tyron Woodley Reveals Dream Opponent in RAF" onerror="this.style.display='none'; this.parentElement.innerHTML='🥊'" />
+                
+                  <img src="/fightonomics/agents/mma-news-updater/images/ex-ufc-champion-tyron-woodley-reveals-dream-opponent-in-raf-1786272074089.jpeg" alt="Ex-UFC Champion Tyron Woodley Reveals Dream Opponent in RAF" />
+                
               </div>
               <div class="news-content">
                 <div class="news-source">Heavy.com</div>
                 <h2 class="news-title">Ex-UFC Champion Tyron Woodley Reveals Dream Opponent in RAF</h2>
                 <p class="news-description">Tyron Woodley revealed who his dream opponent would be in RAF. Woodley surprisingly named an Olympic gold medalist instead of a UFC star. The post Ex-UFC Champion Tyron Woodley Reveals Dream Opponent in RAF appeared first on HEAVY.</p>
                 <div class="news-footer">
-                  <span class="news-date">8/7/2026</span>
+                  <span class="news-date">8/8/2026</span>
                   <a href="https://heavy.com/sports/ufc/tyron-woodley-reveals-dream-opponent-raf/" target="_blank" rel="noopener noreferrer" class="read-more">Read →</a>
                 </div>
               </div>
             </div>
-
-            <div class="news-card">
-              <div class="news-image">
-                <img src="/fightonomics/agents/mma-news-updater/images/pfl-charlotte-video-denis-goltsov-scores-violent-tko-in-opening-round-1786269641019.jpeg" alt="PFL Charlotte video: Denis Goltsov scores violent TKO in opening round" onerror="this.style.display='none'; this.parentElement.innerHTML='🥊'" />
-              </div>
-              <div class="news-content">
-                <div class="news-source">USA Today</div>
-                <h2 class="news-title">PFL Charlotte video: Denis Goltsov scores violent TKO in opening round</h2>
-                <p class="news-description">Watch Denis Goltsov score a violent finish at PFL Charlotte.</p>
-                <div class="news-footer">
-                  <span class="news-date">8/7/2026</span>
-                  <a href="https://mmajunkie.usatoday.com/story/sports/pfl/2026/08/07/pfl-charlotte-video-denis-goltsov-scores-violent-tko/91223019007/" target="_blank" rel="noopener noreferrer" class="read-more">Read →</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="news-card">
-              <div class="news-image">
-                <img src="/fightonomics/agents/mma-news-updater/images/one-samurai-2-results-and-highlights-for-every-match-1786269641020.jpeg" alt="ONE SAMURAI 2 â€“ Results And Highlights For Every Match" onerror="this.style.display='none'; this.parentElement.innerHTML='🥊'" />
-              </div>
-              <div class="news-content">
-                <div class="news-source">Onefc.com</div>
-                <h2 class="news-title">ONE SAMURAI 2 â€“ Results And Highlights For Every Match</h2>
-                <p class="news-description">Weâ€™re reporting to you live from Tokyo, Japan! Join us!</p>
-                <div class="news-footer">
-                  <span class="news-date">8/7/2026</span>
-                  <a href="https://www.onefc.com/news/one-samurai-2-results-and-highlights-for-every-match/" target="_blank" rel="noopener noreferrer" class="read-more">Read →</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="news-card">
-              <div class="news-image">
-                <img src="/fightonomics/agents/mma-news-updater/images/ian-garry-keeping-empty-frame-on-wall-for-ufc-belt-1786269641020.jpeg" alt="IanÂ Garry Keeping Empty Frame On Wall For UFC Belt" onerror="this.style.display='none'; this.parentElement.innerHTML='🥊'" />
-              </div>
-              <div class="news-content">
-                <div class="news-source">MMA Mania</div>
-                <h2 class="news-title">IanÂ Garry Keeping Empty Frame On Wall For UFC Belt</h2>
-                <p class="news-description">Ian Machado Garry is as confident as he can be entering his matchup with pound-for-pound king and UFC welterweight champion, Islam Makhachev, next weekend at UFC 330, which is probably why the brash Irishman already has an empty frame hanging on his wall at hâ€¦</p>
-                <div class="news-footer">
-                  <span class="news-date">8/7/2026</span>
-                  <a href="https://www.mmamania.com/latest-news/462997/confidence-or-delusion-ian-garry-keeping-empty-frame-on-wall-for-welterweight-title-ufc-330" target="_blank" rel="noopener noreferrer" class="read-more">Read →</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="news-card">
-              <div class="news-image">
-                <img src="/fightonomics/agents/mma-news-updater/images/pfl-charlotte-video-cheyanne-bowers-turns-tables-taps-elora-dana-in-first-1786269641021.jpeg" alt="PFL Charlotte video: Cheyanne Bowers turns tables, taps Elora Dana in first" onerror="this.style.display='none'; this.parentElement.innerHTML='🥊'" />
-              </div>
-              <div class="news-content">
-                <div class="news-source">USA Today</div>
-                <h2 class="news-title">PFL Charlotte video: Cheyanne Bowers turns tables, taps Elora Dana in first</h2>
-                <p class="news-description">Cheyanne Bowers flipped the script on Elora Dana and tapped her with a rear-naked choke after almost getting submitted herself.</p>
-                <div class="news-footer">
-                  <span class="news-date">8/7/2026</span>
-                  <a href="https://mmajunkie.usatoday.com/story/sports/pfl/2026/08/07/pfl-charlotte-video-cheyanne-bowers-submits-elora-dana-first-round/91222666007/" target="_blank" rel="noopener noreferrer" class="read-more">Read →</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="news-card">
-              <div class="news-image">
-                🥊
-              </div>
-              <div class="news-content">
-                <div class="news-source">Slashdot.org</div>
-                <h2 class="news-title">PFL Charlotte results: Battle vs. Rosta - MMA Fighting</h2>
-                <p class="news-description">PFL Charlotte results: Battle vs. RostaMMA Fighting PFL Charlotte â€˜Battle vs. Rostaâ€™ play-by-play, results & round scoringsherdog.com Who's picking Dalton Rosta to spoil Bryan Battle's PFL Charlotte homecoming?MMA Junkie PFL Charlotte: Battle vs. Rosta Live Uâ€¦</p>
-                <div class="news-footer">
-                  <span class="news-date">8/7/2026</span>
-                  <a href="https://slashdot.org/firehose.pl?op=view&amp;id=184895166" target="_blank" rel="noopener noreferrer" class="read-more">Read →</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="news-card">
-              <div class="news-image">
-                <img src="/fightonomics/agents/mma-news-updater/images/stop-overlooking-this-vitamin-when-it-comes-to-muscle-health-1786269641022.jpeg" alt="Stop Overlooking This Vitamin When It Comes To Muscle Health" onerror="this.style.display='none'; this.parentElement.innerHTML='🥊'" />
-              </div>
-              <div class="news-content">
-                <div class="news-source">mindbodygreen.com</div>
-                <h2 class="news-title">Stop Overlooking This Vitamin When It Comes To Muscle Health</h2>
-                <p class="news-description">Low levels of this nutrient could affect far more than bone health.</p>
-                <div class="news-footer">
-                  <span class="news-date">8/7/2026</span>
-                  <a href="https://www.mindbodygreen.com/articles/why-this-vitamin-is-important-for-muscle-health-and-strength-this-vitamin-when-it-comes" target="_blank" rel="noopener noreferrer" class="read-more">Read →</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="news-card">
-              <div class="news-image">
-                <img src="/fightonomics/agents/mma-news-updater/images/matches-to-make-after-pfl-charlotte-1786269641022.jpeg" alt="Matches to make after PFL Charlotte" onerror="this.style.display='none'; this.parentElement.innerHTML='🥊'" />
-              </div>
-              <div class="news-content">
-                <div class="news-source">Sherdog.com</div>
-                <h2 class="news-title">Matches to make after PFL Charlotte</h2>
-                <p class="news-description">Professional Fighters League reshaped the promotionâ€™s middleweight hierarchy and opened the door to several compelling matchups across multiple divisions at PFL Charlotte.</p>
-                <div class="news-footer">
-                  <span class="news-date">8/7/2026</span>
-                  <a href="https://www.sherdog.com/news/articles/Matches-to-make-after-PFL-Charlotte-202265" target="_blank" rel="noopener noreferrer" class="read-more">Read →</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="news-card">
-              <div class="news-image">
-                <img src="/fightonomics/agents/mma-news-updater/images/ufc-331-arman-tsarukyan-vs-mauricio-ruffy-odds-what-to-know-1786269641022.jpeg" alt="UFC 331: Arman Tsarukyan vs. Mauricio Ruffy odds, what to know" onerror="this.style.display='none'; this.parentElement.innerHTML='🥊'" />
-              </div>
-              <div class="news-content">
-                <div class="news-source">USA Today</div>
-                <h2 class="news-title">UFC 331: Arman Tsarukyan vs. Mauricio Ruffy odds, what to know</h2>
-                <p class="news-description">Arman Tsarukyan will take on a surprise opponent at UFC 331.</p>
-                <div class="news-footer">
-                  <span class="news-date">8/7/2026</span>
-                  <a href="https://mmajunkie.usatoday.com/story/sports/ufc/2026/08/07/ufc-331-arman-tsarukyan-vs-mauricio-ruffy-betting-odds-mma-sports-gambling-prediction-pick/91210431007/" target="_blank" rel="noopener noreferrer" class="read-more">Read →</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="news-card">
-              <div class="news-image">
-                <img src="/fightonomics/agents/mma-news-updater/images/pfl-charlotte-video-maxwell-djantou-nana-folds-foe-with-body-shot-1786269641023.jpeg" alt="PFL Charlotte video: Maxwell Djantou Nana folds foe with body shot" onerror="this.style.display='none'; this.parentElement.innerHTML='🥊'" />
-              </div>
-              <div class="news-content">
-                <div class="news-source">USA Today</div>
-                <h2 class="news-title">PFL Charlotte video: Maxwell Djantou Nana folds foe with body shot</h2>
-                <p class="news-description">Holy body shot! Watch Maxwell Djantou Nana fold his opponennt at PFL Charlotte.</p>
-                <div class="news-footer">
-                  <span class="news-date">8/7/2026</span>
-                  <a href="https://mmajunkie.usatoday.com/story/sports/pfl/2026/08/07/pfl-charlotte-video-maxwell-djantou-nana-tko-eduardo-neves-body-shot/91221800007/" target="_blank" rel="noopener noreferrer" class="read-more">Read →</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="news-card">
-              <div class="news-image">
-                <img src="/fightonomics/agents/mma-news-updater/images/pfl-charlotte-video-ufc-vet-trey-waters-stops-trukon-carson-in-wild-car-crash-1786269641023.jpeg" alt="PFL Charlotte video: UFC vet Trey Waters stops Trukon Carson in wild car crash" onerror="this.style.display='none'; this.parentElement.innerHTML='🥊'" />
-              </div>
-              <div class="news-content">
-                <div class="news-source">USA Today</div>
-                <h2 class="news-title">PFL Charlotte video: UFC vet Trey Waters stops Trukon Carson in wild car crash</h2>
-                <p class="news-description">Watch UFC vet Trey Waters pick up a wild TKO win at PFL Charlotte.</p>
-                <div class="news-footer">
-                  <span class="news-date">8/7/2026</span>
-                  <a href="https://mmajunkie.usatoday.com/story/sports/pfl/2026/08/07/pfl-charlotte-trey-waters-tko-trukon-carson-first-round-car-crash/91221621007/" target="_blank" rel="noopener noreferrer" class="read-more">Read →</a>
-                </div>
-              </div>
-            </div>
-
-      </div>
+          
+        </div>
+      
     </div>
   </body>
 </html>
