@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MMA News</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        padding: 20px;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      header {
+        text-align: center;
+        color: white;
+        margin-bottom: 40px;
+        padding: 40px 20px;
+      }
+
+      header h1 {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .update-info {
+        font-size: 0.9em;
+        opacity: 0.9;
+        margin-top: 15px;
+      }
+
+      .news-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+        gap: 20px;
+        margin-bottom: 40px;
+      }
+
+      .news-card {
+        background: white;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .news-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+      }
+
+      .news-image {
+        width: 100%;
+        height: 200px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 0.9em;
+        overflow: hidden;
+      }
+
+      .news-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .news-content {
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+      }
+
+      .news-source {
+        font-size: 0.85em;
+        color: #667eea;
+        font-weight: 600;
+        margin-bottom: 8px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .news-title {
+        font-size: 1.2em;
+        font-weight: 700;
+        color: #222;
+        margin-bottom: 12px;
+        line-height: 1.4;
+      }
+
+      .news-description {
+        font-size: 0.95em;
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 15px;
+        flex-grow: 1;
+      }
+
+      .news-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid #eee;
+        padding-top: 15px;
+      }
+
+      .news-date {
+        font-size: 0.85em;
+        color: #999;
+      }
+
+      .read-more {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        text-decoration: none;
+        padding: 8px 16px;
+        border-radius: 6px;
+        font-weight: 600;
+        font-size: 0.9em;
+        transition: opacity 0.3s ease;
+      }
+
+      .read-more:hover {
+        opacity: 0.9;
+      }
+
+      .empty-state {
+        text-align: center;
+        color: white;
+        padding: 60px 20px;
+      }
+
+      .empty-state h2 {
+        font-size: 2em;
+        margin-bottom: 10px;
+      }
+
+      .empty-state p {
+        font-size: 1.1em;
+        opacity: 0.9;
+      }
+
+      @media (max-width: 768px) {
+        header h1 {
+          font-size: 2em;
+        }
+
+        .news-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>🥊 MMA News</h1>
+        <p>Latest Mixed Martial Arts News & Updates</p>
+        <div class="update-info">
+          <p>Last updated: 8/9/2026, 8:45:33 AM</p>
+          <p>Updates twice daily at 12:00 AM and 12:00 PM UTC</p>
+        </div>
+      </header>
+
+      
+        <div class="news-grid">
+          
+            <div class="news-card">
+              <div class="news-image">
+                
+                  <img src="/fightonomics/agents/mma-news-updater/images/ufc-vegas-120-results-gamrot-vs-salkilld-1786265131967.jpeg" alt="UFC Vegas 120 Results: Gamrot vs. Salkilld" />
+                
+              </div>
+              <div class="news-content">
+                <div class="news-source">MMA Fighting</div>
+                <h2 class="news-title">UFC Vegas 120 Results: Gamrot vs. Salkilld</h2>
+                <p class="news-description">Mateusz Gamrot, Quillan Salkilld clash in UFC Vegas 120 main event</p>
+                <div class="news-footer">
+                  <span class="news-date">8/8/2026</span>
+                  <a href="https://www.mmafighting.com/ufc/503707/ufc-vegas-120-results-gamrot-vs-salkilld" target="_blank" rel="noopener noreferrer" class="read-more">Read More</a>
+                </div>
+              </div>
+            </div>
+          
+            <div class="news-card">
+              <div class="news-image">
+                
+                  <img src="/fightonomics/agents/mma-news-updater/images/frustrated-trump-turns-on-another-ally-as-weak-homeland-security-boss-markwayne-mullin-is-in-angry-president-s-crosshairs-over-four-key-mistakes-1786265131968.jpeg" alt="Frustrated Trump turns on ANOTHER ally as 'weak' Homeland Security boss Markwayne Mullin is in angry president's crosshairs over four key 'mistakes'" />
+                
+              </div>
+              <div class="news-content">
+                <div class="news-source">Dailymail.com</div>
+                <h2 class="news-title">Frustrated Trump turns on ANOTHER ally as 'weak' Homeland Security boss Markwayne Mullin is in angry president's crosshairs over four key 'mistakes'</h2>
+                <p class="news-description">Mullin was confirmed in March after being named Trump's pick to replace ousted Department of Homeland Security Secretary Kristi Noem but may have already worn out his welcome.</p>
+                <div class="news-footer">
+                  <span class="news-date">8/8/2026</span>
+                  <a href="https://www.dailymail.com/news/article-16037857/Trump-turns-Markwayne-Mullin-Homeland-Security-weak.html" target="_blank" rel="noopener noreferrer" class="read-more">Read More</a>
+                </div>
+              </div>
+            </div>
+          
+            <div class="news-card">
+              <div class="news-image">
+                
+                  <img src="/fightonomics/agents/mma-news-updater/images/pfl-charlotte-recap-show-bryan-battle-wins-lewis-mcgrillen-evans-steals-the-show-1786265131969.jpeg" alt="PFL Charlotte recap show: Bryan Battle wins, Lewis McGrillen-Evans steals the show" />
+                
+              </div>
+              <div class="news-content">
+                <div class="news-source">Sherdog.com</div>
+                <h2 class="news-title">PFL Charlotte recap show: Bryan Battle wins, Lewis McGrillen-Evans steals the show</h2>
+                <p class="news-description">Sean Sheehan is back with another Professional Fighters League post-fight show after Charlotte, North Carolina, played host to a card headlined by a middleweight bout with contender implications.</p>
+                <div class="news-footer">
+                  <span class="news-date">8/8/2026</span>
+                  <a href="https://www.sherdog.com/videos/sherdogradio/PFL-Charlotte-recap-show-Bryan-Battle-wins-Lewis-McGrillenEvans-steals-the-show-23651" target="_blank" rel="noopener noreferrer" class="read-more">Read More</a>
+                </div>
+              </div>
+            </div>
+          
+            <div class="news-card">
+              <div class="news-image">
+                
+                  <img src="/fightonomics/agents/mma-news-updater/images/pfl-charlotte-results-battle-splits-rosta-jake-paul-next-1786265131970.jpeg" alt="PFL Charlotte Results: Battle Splits Rosta, Jake Paul Next?" />
+                
+              </div>
+              <div class="news-content">
+                <div class="news-source">MMA Mania</div>
+                <h2 class="news-title">PFL Charlotte Results: Battle Splits Rosta, Jake Paul Next?</h2>
+                <p class="news-description">PFL Charlotte went down last night (Fri., Aug. 7, 2026) inside Bojangles Coliseum in Charlotte, North Carolina. In the main event of the evening, Bryan Battle defeated Dalton Rosta via split decision after a back-and-forth brawl. The win gave Battle his first…</p>
+                <div class="news-footer">
+                  <span class="news-date">8/8/2026</span>
+                  <a href="https://www.mmamania.com/professional-fighters-league-pfl/463095/pfl-charlotte-results-recap-and-highlights-battle-splits-rosta-offers-to-welcome-jake-paul-to-mma" target="_blank" rel="noopener noreferrer" class="read-more">Read More</a>
+                </div>
+              </div>
+            </div>
+          
+            <div class="news-card">
+              <div class="news-image">
+                
+                  <img src="/fightonomics/agents/mma-news-updater/images/conor-mcgregor-donald-trump-and-the-political-arena-of-mma-1786265131971.jpeg" alt="Conor McGregor, Donald Trump and the political arena of MMA" />
+                
+              </div>
+              <div class="news-content">
+                <div class="news-source">The Irish Times</div>
+                <h2 class="news-title">Conor McGregor, Donald Trump and the political arena of MMA</h2>
+                <p class="news-description">For MMA, Maga’s sports arm, not even a court finding of liability for rape prevented McGregor from topping the bill. Might his ‘dud’ comeback change attitudes?</p>
+                <div class="news-footer">
+                  <span class="news-date">8/8/2026</span>
+                  <a href="https://www.irishtimes.com/life-style/people/2026/08/08/conor-mcgregor-donald-trump-and-the-political-arena-of-mma/" target="_blank" rel="noopener noreferrer" class="read-more">Read More</a>
+                </div>
+              </div>
+            </div>
+          
+            <div class="news-card">
+              <div class="news-image">
+                
+                  <img src="/fightonomics/agents/mma-news-updater/images/pfl-charlotte-results-brian-battle-edges-dalton-rosta-in-hometown-win-1786265131971.jpeg" alt="PFL Charlotte results: Brian Battle edges Dalton Rosta in hometown win" />
+                
+              </div>
+              <div class="news-content">
+                <div class="news-source">USA Today</div>
+                <h2 class="news-title">PFL Charlotte results: Brian Battle edges Dalton Rosta in hometown win</h2>
+                <p class="news-description">TUF 29 winner Brian Battle got his hand raised at home in the main event of PFL Charlotte.</p>
+                <div class="news-footer">
+                  <span class="news-date">8/8/2026</span>
+                  <a href="https://mmajunkie.usatoday.com/story/sports/pfl/2026/08/08/pfl-charlotte-results-brian-battle-wins-hometown-split-decision-dalton-rosta/91223827007/" target="_blank" rel="noopener noreferrer" class="read-more">Read More</a>
+                </div>
+              </div>
+            </div>
+          
+            <div class="news-card">
+              <div class="news-image">
+                
+                  <img src="/fightonomics/agents/mma-news-updater/images/midnight-mania-gordon-beats-up-hapless-troll-in-viral-video-1786265131972.jpeg" alt="Midnight Mania! Gordon Beats Up Hapless Troll In Viral Video" />
+                
+              </div>
+              <div class="news-content">
+                <div class="news-source">MMA Mania</div>
+                <h2 class="news-title">Midnight Mania! Gordon Beats Up Hapless Troll In Viral Video</h2>
+                <p class="news-description">Bringing you the weird and wild from the world of MMA each and every weeknight!</p>
+                <div class="news-footer">
+                  <span class="news-date">8/8/2026</span>
+                  <a href="https://www.mmamania.com/ufc-videos/463020/video-jared-gordon-pummels-goofy-internet-troll-not-trying-to-catch-a-lawsuit" target="_blank" rel="noopener noreferrer" class="read-more">Read More</a>
+                </div>
+              </div>
+            </div>
+          
+            <div class="news-card">
+              <div class="news-image">
+                
+                  <span>🥊 MMA News</span>
+                
+              </div>
+              <div class="news-content">
+                <div class="news-source">Slashdot.org</div>
+                <h2 class="news-title">PFL Charlotte: Battle vs. Rosta live results, highlights - MMA Junkie</h2>
+                <p class="news-description">PFL Charlotte: Battle vs. Rosta live results, highlightsMMA Junkie PFL Charlotte: Battle vs. Rosta Live Updates, Results and HighlightsBleacher Report PFL Charlotte results: Battle vs. RostaMMA Fighting PFL Charlotte weigh-ins: Bryan Battle, Dalton Rosta set …</p>
+                <div class="news-footer">
+                  <span class="news-date">8/8/2026</span>
+                  <a href="https://slashdot.org/firehose.pl?op=view&amp;id=184895890" target="_blank" rel="noopener noreferrer" class="read-more">Read More</a>
+                </div>
+              </div>
+            </div>
+          
+            <div class="news-card">
+              <div class="news-image">
+                
+                  <span>🥊 MMA News</span>
+                
+              </div>
+              <div class="news-content">
+                <div class="news-source">Albuquerque Journal</div>
+                <h2 class="news-title">Tender, loving care? Not in the ring</h2>
+                <p class="news-description">Saturday Boxing: Leanna Martinez vs. Amanda Lovato, Jorge Villarruel vs. Shaquan Wager, four other boutx Time: 6 p.m. (doors open at 5) Location: Embassy Suites Streaming: YouTube Leanna Martinez is a registered nurse. Amanda Lovato is planning to enter the n…</p>
+                <div class="news-footer">
+                  <span class="news-date">8/8/2026</span>
+                  <a href="https://www.abqjournal.com/sports/tender-loving-care-not-in-the-ring/3098843" target="_blank" rel="noopener noreferrer" class="read-more">Read More</a>
+                </div>
+              </div>
+            </div>
+          
+            <div class="news-card">
+              <div class="news-image">
+                
+                  <img src="/fightonomics/agents/mma-news-updater/images/ex-ufc-champion-tyron-woodley-reveals-dream-opponent-in-raf-1786265131976.jpeg" alt="Ex-UFC Champion Tyron Woodley Reveals Dream Opponent in RAF" />
+                
+              </div>
+              <div class="news-content">
+                <div class="news-source">Heavy.com</div>
+                <h2 class="news-title">Ex-UFC Champion Tyron Woodley Reveals Dream Opponent in RAF</h2>
+                <p class="news-description">Tyron Woodley revealed who his dream opponent would be in RAF. Woodley surprisingly named an Olympic gold medalist instead of a UFC star. The post Ex-UFC Champion Tyron Woodley Reveals Dream Opponent in RAF appeared first on HEAVY.</p>
+                <div class="news-footer">
+                  <span class="news-date">8/8/2026</span>
+                  <a href="https://heavy.com/sports/ufc/tyron-woodley-reveals-dream-opponent-raf/" target="_blank" rel="noopener noreferrer" class="read-more">Read More</a>
+                </div>
+              </div>
+            </div>
+          
+            <div class="news-card">
+              <div class="news-image">
+                
+                  <img src="/fightonomics/agents/mma-news-updater/images/pfl-charlotte-video-denis-goltsov-scores-violent-tko-in-opening-round-1786265131976.jpeg" alt="PFL Charlotte video: Denis Goltsov scores violent TKO in opening round" />
+                
+              </div>
+              <div class="news-content">
+                <div class="news-source">USA Today</div>
+                <h2 class="news-title">PFL Charlotte video: Denis Goltsov scores violent TKO in opening round</h2>
+                <p class="news-description">Watch Denis Goltsov score a violent finish at PFL Charlotte.</p>
+                <div class="news-footer">
+                  <span class="news-date">8/8/2026</span>
+                  <a href="https://mmajunkie.usatoday.com/story/sports/pfl/2026/08/07/pfl-charlotte-video-denis-goltsov-scores-violent-tko/91223019007/" target="_blank" rel="noopener noreferrer" class="read-more">Read More</a>
+                </div>
+              </div>
+            </div>
+          
+            <div class="news-card">
+              <div class="news-image">
+                
+                  <img src="/fightonomics/agents/mma-news-updater/images/one-samurai-2-results-and-highlights-for-every-match-1786265131977.jpeg" alt="ONE SAMURAI 2 – Results And Highlights For Every Match" />
+                
+              </div>
+              <div class="news-content">
+                <div class="news-source">Onefc.com</div>
+                <h2 class="news-title">ONE SAMURAI 2 – Results And Highlights For Every Match</h2>
+                <p class="news-description">We’re reporting to you live from Tokyo, Japan! Join us!</p>
+                <div class="news-footer">
+                  <span class="news-date">8/8/2026</span>
+                  <a href="https://www.onefc.com/news/one-samurai-2-results-and-highlights-for-every-match/" target="_blank" rel="noopener noreferrer" class="read-more">Read More</a>
+                </div>
+              </div>
+            </div>
+          
+            <div class="news-card">
+              <div class="news-image">
+                
+                  <img src="/fightonomics/agents/mma-news-updater/images/ian-garry-keeping-empty-frame-on-wall-for-ufc-belt-1786265131977.jpeg" alt="Ian Garry Keeping Empty Frame On Wall For UFC Belt" />
+                
+              </div>
+              <div class="news-content">
+                <div class="news-source">MMA Mania</div>
+                <h2 class="news-title">Ian Garry Keeping Empty Frame On Wall For UFC Belt</h2>
+                <p class="news-description">Ian Machado Garry is as confident as he can be entering his matchup with pound-for-pound king and UFC welterweight champion, Islam Makhachev, next weekend at UFC 330, which is probably why the brash Irishman already has an empty frame hanging on his wall at h…</p>
+                <div class="news-footer">
+                  <span class="news-date">8/8/2026</span>
+                  <a href="https://www.mmamania.com/latest-news/462997/confidence-or-delusion-ian-garry-keeping-empty-frame-on-wall-for-welterweight-title-ufc-330" target="_blank" rel="noopener noreferrer" class="read-more">Read More</a>
+                </div>
+              </div>
+            </div>
+          
+            <div class="news-card">
+              <div class="news-image">
+                
+                  <img src="/fightonomics/agents/mma-news-updater/images/pfl-charlotte-video-cheyanne-bowers-turns-tables-taps-elora-dana-in-first-1786265131977.jpeg" alt="PFL Charlotte video: Cheyanne Bowers turns tables, taps Elora Dana in first" />
+                
+              </div>
+              <div class="news-content">
+                <div class="news-source">USA Today</div>
+                <h2 class="news-title">PFL Charlotte video: Cheyanne Bowers turns tables, taps Elora Dana in first</h2>
+                <p class="news-description">Cheyanne Bowers flipped the script on Elora Dana and tapped her with a rear-naked choke after almost getting submitted herself.</p>
+                <div class="news-footer">
+                  <span class="news-date">8/8/2026</span>
+                  <a href="https://mmajunkie.usatoday.com/story/sports/pfl/2026/08/07/pfl-charlotte-video-cheyanne-bowers-submits-elora-dana-first-round/91222666007/" target="_blank" rel="noopener noreferrer" class="read-more">Read More</a>
+                </div>
+              </div>
+            </div>
+          
+            <div class="news-card">
+              <div class="news-image">
+                
+                  <span>🥊 MMA News</span>
+                
+              </div>
+              <div class="news-content">
+                <div class="news-source">Slashdot.org</div>
+                <h2 class="news-title">PFL Charlotte results: Battle vs. Rosta - MMA Fighting</h2>
+                <p class="news-description">PFL Charlotte results: Battle vs. RostaMMA Fighting PFL Charlotte ‘Battle vs. Rosta’ play-by-play, results & round scoringsherdog.com Who's picking Dalton Rosta to spoil Bryan Battle's PFL Charlotte homecoming?MMA Junkie PFL Charlotte: Battle vs. Rosta Live U…</p>
+                <div class="news-footer">
+                  <span class="news-date">8/8/2026</span>
+                  <a href="https://slashdot.org/firehose.pl?op=view&amp;id=184895166" target="_blank" rel="noopener noreferrer" class="read-more">Read More</a>
+                </div>
+              </div>
+            </div>
+          
+            <div class="news-card">
+              <div class="news-image">
+                
+                  <img src="/fightonomics/agents/mma-news-updater/images/stop-overlooking-this-vitamin-when-it-comes-to-muscle-health-1786265131978.jpeg" alt="Stop Overlooking This Vitamin When It Comes To Muscle Health" />
+                
+              </div>
+              <div class="news-content">
+                <div class="news-source">mindbodygreen.com</div>
+                <h2 class="news-title">Stop Overlooking This Vitamin When It Comes To Muscle Health</h2>
+                <p class="news-description">Low levels of this nutrient could affect far more than bone health.</p>
+                <div class="news-footer">
+                  <span class="news-date">8/8/2026</span>
+                  <a href="https://www.mindbodygreen.com/articles/why-this-vitamin-is-important-for-muscle-health-and-strength-this-vitamin-when-it-comes" target="_blank" rel="noopener noreferrer" class="read-more">Read More</a>
+                </div>
+              </div>
+            </div>
+          
+            <div class="news-card">
+              <div class="news-image">
+                
+                  <img src="/fightonomics/agents/mma-news-updater/images/matches-to-make-after-pfl-charlotte-1786265131979.jpeg" alt="Matches to make after PFL Charlotte" />
+                
+              </div>
+              <div class="news-content">
+                <div class="news-source">Sherdog.com</div>
+                <h2 class="news-title">Matches to make after PFL Charlotte</h2>
+                <p class="news-description">Professional Fighters League reshaped the promotion’s middleweight hierarchy and opened the door to several compelling matchups across multiple divisions at PFL Charlotte.</p>
+                <div class="news-footer">
+                  <span class="news-date">8/7/2026</span>
+                  <a href="https://www.sherdog.com/news/articles/Matches-to-make-after-PFL-Charlotte-202265" target="_blank" rel="noopener noreferrer" class="read-more">Read More</a>
+                </div>
+              </div>
+            </div>
+          
+            <div class="news-card">
+              <div class="news-image">
+                
+                  <img src="/fightonomics/agents/mma-news-updater/images/ufc-331-arman-tsarukyan-vs-mauricio-ruffy-odds-what-to-know-1786265131979.jpeg" alt="UFC 331: Arman Tsarukyan vs. Mauricio Ruffy odds, what to know" />
+                
+              </div>
+              <div class="news-content">
+                <div class="news-source">USA Today</div>
+                <h2 class="news-title">UFC 331: Arman Tsarukyan vs. Mauricio Ruffy odds, what to know</h2>
+                <p class="news-description">Arman Tsarukyan will take on a surprise opponent at UFC 331.</p>
+                <div class="news-footer">
+                  <span class="news-date">8/7/2026</span>
+                  <a href="https://mmajunkie.usatoday.com/story/sports/ufc/2026/08/07/ufc-331-arman-tsarukyan-vs-mauricio-ruffy-betting-odds-mma-sports-gambling-prediction-pick/91210431007/" target="_blank" rel="noopener noreferrer" class="read-more">Read More</a>
+                </div>
+              </div>
+            </div>
+          
+            <div class="news-card">
+              <div class="news-image">
+                
+                  <img src="/fightonomics/agents/mma-news-updater/images/pfl-charlotte-video-maxwell-djantou-nana-folds-foe-with-body-shot-1786265131979.jpeg" alt="PFL Charlotte video: Maxwell Djantou Nana folds foe with body shot" />
+                
+              </div>
+              <div class="news-content">
+                <div class="news-source">USA Today</div>
+                <h2 class="news-title">PFL Charlotte video: Maxwell Djantou Nana folds foe with body shot</h2>
+                <p class="news-description">Holy body shot! Watch Maxwell Djantou Nana fold his opponennt at PFL Charlotte.</p>
+                <div class="news-footer">
+                  <span class="news-date">8/7/2026</span>
+                  <a href="https://mmajunkie.usatoday.com/story/sports/pfl/2026/08/07/pfl-charlotte-video-maxwell-djantou-nana-tko-eduardo-neves-body-shot/91221800007/" target="_blank" rel="noopener noreferrer" class="read-more">Read More</a>
+                </div>
+              </div>
+            </div>
+          
+            <div class="news-card">
+              <div class="news-image">
+                
+                  <img src="/fightonomics/agents/mma-news-updater/images/pfl-charlotte-video-ufc-vet-trey-waters-stops-trukon-carson-in-wild-car-crash-1786265131980.jpeg" alt="PFL Charlotte video: UFC vet Trey Waters stops Trukon Carson in wild car crash" />
+                
+              </div>
+              <div class="news-content">
+                <div class="news-source">USA Today</div>
+                <h2 class="news-title">PFL Charlotte video: UFC vet Trey Waters stops Trukon Carson in wild car crash</h2>
+                <p class="news-description">Watch UFC vet Trey Waters pick up a wild TKO win at PFL Charlotte.</p>
+                <div class="news-footer">
+                  <span class="news-date">8/7/2026</span>
+                  <a href="https://mmajunkie.usatoday.com/story/sports/pfl/2026/08/07/pfl-charlotte-trey-waters-tko-trukon-carson-first-round-car-crash/91221621007/" target="_blank" rel="noopener noreferrer" class="read-more">Read More</a>
+                </div>
+              </div>
+            </div>
+          
+        </div>
+      
+    </div>
+  </body>
+</html>
