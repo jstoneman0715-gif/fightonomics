@@ -330,6 +330,7 @@ p { color: var(--text-dim); }
   gap: 22px;
 }
 .card-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+.card-grid.grid-4 { grid-template-columns: repeat(4, 1fr); }
 .article-card {
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -437,6 +438,11 @@ p { color: var(--text-dim); }
 }
 
 /* ---------- Tale of the tape table (Fact Breakdowns) ---------- */
+/* Wide content scrolls inside its own container so the page never scrolls sideways. */
+.table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
 .tape-table {
   width: 100%;
   border-collapse: collapse;
@@ -579,11 +585,44 @@ p { color: var(--text-dim); }
 }
 .page-header .img-placeholder { margin-top: 28px; }
 
+/* ---------- Accessibility ---------- */
+/* Available to screen readers, hidden visually. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .pillar-card:hover,
+  .btn-primary:hover { transform: none; }
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .hero-grid { grid-template-columns: 1fr; }
   .pillars-grid { grid-template-columns: repeat(2, 1fr); }
-  .card-grid, .card-grid.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .card-grid, .card-grid.cols-2, .card-grid.grid-4 { grid-template-columns: repeat(2, 1fr); }
   .stat-tiles { grid-template-columns: repeat(2, 1fr); }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .vs-grid { grid-template-columns: 1fr; }
@@ -608,6 +647,8 @@ p { color: var(--text-dim); }
   .nav-toggle { display: flex; }
   .pillars-grid { grid-template-columns: 1fr; }
   .card-grid, .card-grid.cols-2 { grid-template-columns: 1fr; }
+  /* square profile cards stay two-up — one-up wastes the width */
+  .card-grid.grid-4 { grid-template-columns: repeat(2, 1fr); }
   .stat-tiles { grid-template-columns: 1fr 1fr; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .stat-row { grid-template-columns: 100px 1fr 44px; }
